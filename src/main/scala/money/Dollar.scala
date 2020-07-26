@@ -1,7 +1,6 @@
 package money
 
-class Dollar(var amount: Int) {
-  def times(multiplier: Int): Unit = {
-    amount = amount * multiplier
-  }
+class Dollar(val amount: Int) {
+  def times(multiplier: Int): Dollar =
+    new Dollar(amount * multiplier)
 }
