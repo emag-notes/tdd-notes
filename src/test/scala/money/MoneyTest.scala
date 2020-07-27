@@ -15,4 +15,9 @@ class MoneyTest extends AnyFlatSpec {
     assert(Dollar(5) !== Dollar(6))
   }
 
+  "Franc" should "be able to multiply" in {
+    val five = Franc(5)
+    assert(five.times(2) === Franc(10))
+    assert(five.times(3) === Franc(15))
+  }
 }
