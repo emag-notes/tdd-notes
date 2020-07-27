@@ -10,9 +10,11 @@ class MoneyTest extends AnyFlatSpec {
     assert(five.times(3) === Dollar(15))
   }
 
-  it should "have equality" in {
+  "Money" should "have equality" in {
     assert(Dollar(5) === Dollar(5))
     assert(Dollar(5) !== Dollar(6))
+    assert(Franc(5) === Franc(5))
+    assert(Franc(5) !== Franc(6))
   }
 
   "Franc" should "be able to multiply" in {
