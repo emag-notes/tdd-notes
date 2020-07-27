@@ -1,6 +1,6 @@
 package money
 
-case class Dollar(amount: Int) {
+case class Dollar(private val amount: Int) {
   def times(multiplier: Int): Dollar =
     Dollar(amount * multiplier)
 }
