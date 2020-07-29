@@ -1,6 +1,6 @@
 package money
 
 case class Franc(override protected val amount: Int) extends Money(amount) {
-  def times(multiplier: Int): Franc =
+  override def times(multiplier: Int): Money =
     Franc(amount * multiplier)
 }
