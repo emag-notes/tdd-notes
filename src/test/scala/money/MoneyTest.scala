@@ -28,4 +28,8 @@ class MoneyTest extends AnyFlatSpec {
     assert(Money.dollar(1).currency === "USD")
     assert(Money.franc(1).currency === "CHF")
   }
+
+  it should "be equal different classes" in {
+    assert(new Money(10, "CHF") === new Franc(10, "CHF"))
+  }
 }
