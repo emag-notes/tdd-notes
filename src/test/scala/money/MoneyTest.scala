@@ -21,4 +21,11 @@ class MoneyTest extends AnyFlatSpec {
     assert(Money.franc(1).currency === "CHF")
   }
 
+  it should "be able to add simply" in {
+    val five    = Money.dollar(5)
+    val sum     = five.plus(five)
+    val bank    = new Bank()
+    val reduced = bank.reduce(sum, "USD")
+    assert(reduced === Money.dollar(10))
+  }
 }
