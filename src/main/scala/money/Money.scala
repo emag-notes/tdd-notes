@@ -14,6 +14,6 @@ class Money(protected val amount: Int, protected val _currency: String) {
 }
 
 object Money {
-  def dollar(amount: Int): Money = Dollar(amount, "USD")
-  def franc(amount: Int): Money  = Franc(amount, "CHF")
+  def dollar(amount: Int): Money = new Money(amount, "USD")
+  def franc(amount: Int): Money  = new Money(amount, "CHF")
 }
