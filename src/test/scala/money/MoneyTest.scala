@@ -49,4 +49,15 @@ class MoneyTest extends AnyFlatSpec {
     val result = bank.reduce(Money.dollar(1), "USD")
     assert(result === Money.dollar(1))
   }
+
+  it should "return reduced money between different currency" in {
+    val bank = new Bank
+    bank.addRate("CHF", "USD", 2)
+    val result = bank.reduce(Money.franc(2), "USD")
+    assert(result === Money.dollar(1))
+  }
+
+  it should "identify rate" in {
+    assert((new Bank).rate("USD", "USD") === 1)
+  }
 }

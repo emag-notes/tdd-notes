@@ -3,7 +3,11 @@ package money
 class Money(private[money] val amount: Int, private[money] val currency: String) extends Expression {
   private[money] def times(multiplier: Int): Money  = new Money(amount * multiplier, currency)
   private[money] def plus(added: Money): Expression = new Sum(this, added)
-  def reduce(to: String): Money                     = this
+
+  def reduce(bank: Bank, to: String): Money = {
+    val rate = bank.rate(currency, to)
+    new Money(amount / rate, to)
+  }
 
   override def equals(other: Any): Boolean =
     other match {
