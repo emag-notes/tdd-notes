@@ -60,4 +60,13 @@ class MoneyTest extends AnyFlatSpec {
   it should "identify rate" in {
     assert((new Bank).rate("USD", "USD") === 1)
   }
+
+  it should "add mixed currencies" in {
+    val fiveBucks: Expression = Money.dollar(5)
+    val tenFrancs: Expression = Money.franc(10)
+    val bank                  = new Bank
+    bank.addRate("CHF", "USD", 2)
+    val result = bank.reduce(fiveBucks.plus(tenFrancs), "USD")
+    assert(result === Money.dollar(10))
+  }
 }
