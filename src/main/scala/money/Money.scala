@@ -1,10 +1,10 @@
 package money
 
 class Money(private[money] val amount: Int, private[money] val currency: String) extends Expression {
-  private[money] def times(multiplier: Int): Expression = new Money(amount * multiplier, currency)
-  def plus(added: Expression): Expression               = new Sum(this, added)
+  override def times(multiplier: Int): Expression  = new Money(amount * multiplier, currency)
+  override def plus(added: Expression): Expression = new Sum(this, added)
 
-  def reduce(bank: Bank, to: String): Money = {
+  override def reduce(bank: Bank, to: String): Money = {
     val rate = bank.rate(currency, to)
     new Money(amount / rate, to)
   }

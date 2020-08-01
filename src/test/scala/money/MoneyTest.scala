@@ -69,4 +69,24 @@ class MoneyTest extends AnyFlatSpec {
     val result = bank.reduce(fiveBucks.plus(tenFrancs), "USD")
     assert(result === Money.dollar(10))
   }
+
+  it should "sum plus money" in {
+    val fiveBucks: Expression = Money.dollar(5)
+    val tenFrancs: Expression = Money.franc(10)
+    val bank                  = new Bank
+    bank.addRate("CHF", "USD", 2)
+    val sum: Expression = new Sum(fiveBucks, tenFrancs).plus(fiveBucks)
+    val result          = bank.reduce(sum, "USD")
+    assert(result === Money.dollar(15))
+  }
+
+  it should "sum times" in {
+    val fiveBucks: Expression = Money.dollar(5)
+    val tenFrancs: Expression = Money.franc(10)
+    val bank                  = new Bank
+    bank.addRate("CHF", "USD", 2)
+    val sum: Expression = new Sum(fiveBucks, tenFrancs).times(2)
+    val result          = bank.reduce(sum, "USD")
+    assert(result === Money.dollar(20))
+  }
 }
