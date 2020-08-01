@@ -28,4 +28,25 @@ class MoneyTest extends AnyFlatSpec {
     val reduced = bank.reduce(sum, "USD")
     assert(reduced === Money.dollar(10))
   }
+
+  it should "return sum" in {
+    val five   = Money.dollar(5)
+    val result = five.plus(five)
+    val sum    = result.asInstanceOf[Sum]
+    assert(five === sum.augend)
+    assert(five === sum.addend)
+  }
+
+  it should "return reduced sum" in {
+    val sum    = new Sum(Money.dollar(3), Money.dollar(4))
+    val bank   = new Bank
+    val result = bank.reduce(sum, "USD")
+    assert(result === Money.dollar(7))
+  }
+
+  it should "return reduced money" in {
+    val bank   = new Bank
+    val result = bank.reduce(Money.dollar(1), "USD")
+    assert(result === Money.dollar(1))
+  }
 }

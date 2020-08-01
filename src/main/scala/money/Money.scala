@@ -1,10 +1,9 @@
 package money
 
-class Money(protected val amount: Int, protected val _currency: String) extends Expression {
-  def currency: String = _currency
-
-  def times(multiplier: Int): Money  = new Money(amount * multiplier, _currency)
-  def plus(added: Money): Expression = new Money(amount + added.amount, _currency)
+class Money(private[money] val amount: Int, private[money] val currency: String) extends Expression {
+  private[money] def times(multiplier: Int): Money  = new Money(amount * multiplier, currency)
+  private[money] def plus(added: Money): Expression = new Sum(this, added)
+  def reduce(to: String): Money                     = this
 
   override def equals(other: Any): Boolean =
     other match {

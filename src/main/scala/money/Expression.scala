@@ -1,3 +1,5 @@
 package money
 
-trait Expression
+trait Expression {
+  def reduce(to: String): Money
+}
