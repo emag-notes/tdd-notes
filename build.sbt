@@ -13,5 +13,8 @@ lazy val root = (project in file("."))
         "-P:semanticdb:failures:warning"
       ),
     addCompilerPlugin(scalafixSemanticdb),
-    libraryDependencies += scalaTest % Test
+    libraryDependencies ++= Seq(
+        scalaReflect,
+        scalaTest % Test
+      )
   )
